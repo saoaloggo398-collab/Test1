@@ -1,4 +1,5 @@
 package com.example;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterAll;
@@ -41,6 +42,13 @@ void mulテスト_正常() {
     assertThat(calc.mul(2,3))
     .as("乗算結果の確認")
     .isEqualTo(6);
+}
+
+@Test
+void  divテスト_異常() {
+    assertThatThrownBy(() -> calc.div(10, 0))
+    .isInstanceOf(ArithmeticException.class)
+    .hasMessageContaining("by zero");
 }
 
 @AfterAll
